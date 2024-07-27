@@ -131,7 +131,7 @@ A placa DE1-SoC possui um conector D-SUB de 15 pinos para saída VGA. Os sinais 
 </div>
 </br>
 
-# Bibioltecas
+# Bibliotecas
 
 ## gpu_lib.h
 
