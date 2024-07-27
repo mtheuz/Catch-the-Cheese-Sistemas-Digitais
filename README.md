@@ -1,8 +1,6 @@
 <div align="center">
-<h1>Conversas entre Hardware e Software</h1>
+<h1>Catch The Cheese</h1>
 </div>
-
-# Catch The Cheese
 
 ```py
 1. Clone esse repositório para sua máquina [git clone URL]
