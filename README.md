@@ -215,10 +215,18 @@ Duas novas bibliotecas foram criadas para se comunicar com os componentes da pla
 ### Movimento do mouse
 
 A função `mouse_movement()` tem a tarefa de processar eventos do mouse para atualizar a posição do cursor na tela. Inicialmente, a função lê os dados do mouse, que incluem informações sobre o estado dos botões e o deslocamento do cursor. Em seguida, ela aplica uma forma básica de aceleração ao atualizar as coordenadas do cursor, reduzindo o impacto do movimento ao dividir o deslocamento por 2. Isso ajuda a suavizar o movimento do cursor e a evitar movimentos excessivamente rápidos. Além disso, a função garante que o cursor permaneça dentro de uma área específica da tela, ajustando suas coordenadas para não ultrapassar os limites estabelecidos. Embora essa aceleração seja simples, ela pode ser ajustada para comportamentos mais avançados conforme necessário.
+<div align="center">
+<img src="https://github.com/user-attachments/assets/5625355b-e5c5-413b-867e-3675aba589ab" width="700">
+</div>
+</br>
 
 ### Verificação de colisão
 
 Para verificar se dois sprites colidem em um jogo, criamos a função `collision`, que recebe as coordenadas X e Y de dois sprites e determina se eles estão se sobrepondo. A função calcula as bordas direita e inferior de ambos os sprites, assumindo que cada sprite tem um tamanho fixo de 20 unidades em largura e altura. Em seguida, ela compara as coordenadas dos sprites para verificar se há alguma interseção entre suas áreas. Se as coordenadas de um sprite estiverem fora dos limites do outro, a função conclui que não há colisão, definindo a propriedade de colisão dos sprites como 0 e retornando 0. Caso contrário, se houver sobreposição, a propriedade de colisão é ajustada para 1 para ambos os sprites e a função retorna 1, indicando que houve uma colisão.
+<div align="center" widht="300">
+<img src="https://github.com/user-attachments/assets/4314df09-6f8f-4629-aa88-6d251eeff535" width="400">
+</div>
+</br>
 
 ### Aleatoriedade dos objetos
 
@@ -353,18 +361,40 @@ No jogo "Catch The Cheese", o jogador controla um rato cujo objetivo é coletar 
 
 O jogador assume o papel de um rato esperto, cuja missão é coletar queijos espalhados pelo cenário. A cada 5 queijos coletados, o jogador avança para uma nova fase, devendo coletar mais 5 queijos. A jornada se completa ao atingir um total de 25 queijos.
 
+<div align="center">
+<img src="https://github.com/user-attachments/assets/fd413855-b81a-492d-ae2a-f30b36458dd5" width="700">
+</div>
+</br>
+
 ## Desafios
 
 Gatos aparecerão para complicar a vida do nosso pequeno herói. Eles se movimentam tanto na vertical quanto na horizontal e, se colidirem com o rato, o jogador perderá uma das suas 3 vidas. Além disso, ratoeiras estarão espalhadas pelo caminho, representando mais uma ameaça.
 
-## Poderes e Habilidades
 
+
+## Poderes e Habilidades
 - **Fantasma Temporário:** Ao ser atingido por um gato ou ratoeira, o rato se transforma em um fantasma por um curto período, ficando imune a danos.
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/08d17f6e-d025-4493-90c7-005a85d484fc" width="700">
+</div>
+</br>
+
 - **Escudo Protetor:** Uma vez por jogo, o jogador pode ativar o escudo clicando com o botão esquerdo do mouse. O escudo protege o rato de perder uma vida na próxima vez que for atingido.
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/8c417f9d-71c3-42eb-a8c3-ac621f630a2d" width="200">
+</div>
+</br>
 
 ## Fim de Jogo
 
 Se o jogador perder todas as 3 vidas, ao próximo impacto o jogo termina com um "Game Over" e ele terá que reiniciar para jogar novamente.
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/0e3c5670-6915-460a-b003-9c19c73f8bed" width="700">
+</div>
+</br>
 
 ## Progresso
 
