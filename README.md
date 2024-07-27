@@ -229,10 +229,17 @@ Para evitar conflitos entre a utilização do mouse e os botões da placa, o sis
 
 # Fluxo do jogo
 
-O fluxograma ilustra a sequência de passos para o funcionamento do jogo, começando com a inicialização da variável `game_state` e a impressão da tela inicial. Em seguida, o sistema lê o botão `KEY0`. Se `KEY0` for pressionado (`KEY0 == 1`), duas threads são iniciadas: `THREAD1` e `THREAD2`. `THREAD1` é responsável pelo movimento e ações do mouse, enquanto `THREAD2` cuida do loop principal do jogo e da ação dos botões. Ambas as threads verificam constantemente o estado do jogo (`game_state`), e se o `game_state` for maior ou igual a 6, o jogo termina e o sistema segue para a saída. Se `KEY0` não for pressionado, o sistema continua verificando até que seja detectada a entrada do usuário.
+A figura ilustra a sequência de passos para o funcionamento do jogo, começando com a inicialização da variável `game_state` e a impressão da tela inicial. Em seguida, o sistema lê o botão `KEY0`. Se `KEY0` for pressionado (`KEY0 == 1`), duas threads são iniciadas: `THREAD1` e `THREAD2`. `THREAD1` é responsável pelo movimento e ações do mouse, enquanto `THREAD2` cuida do loop principal do jogo e da ação dos botões. Ambas as threads verificam constantemente o estado do jogo (`game_state`), e se o `game_state` for maior ou igual a 6, o jogo termina e o sistema segue para a saída. Se `KEY0` não for pressionado, o sistema continua verificando até que seja detectada a entrada do usuário.
+<div align="center" widht="300">
+<img src="https://github.com/user-attachments/assets/342063c1-f9c1-4549-9886-d4bd90cbc0ed" width="400">
+</div>
+</br>
 
 ## Funcionamento dos botões 
-
+<div align="center" widht="300">
+<img src="https://github.com/user-attachments/assets/435e19fa-18f4-44ae-9f1e-1a60656063b1" width="700">
+</div>
+</br>
 O fluxograma detalha o funcionamento do loop principal do jogo (`THREAD2`) e as ações dos botões. Aqui está uma descrição passo a passo de cada seção:
 
 1. **Início:**
@@ -267,6 +274,10 @@ Cada estado do jogo é verificado sequencialmente, e as ações são tomadas com
 
 
 ## Movimento e Ações do Mouse
+<div align="center" widht="300">
+<img src="https://github.com/user-attachments/assets/53501798-c3ea-4e41-876a-a14b90126f88" width="400">
+</div>
+</br>
 Este fluxograma descreve o fluxo de execução da `THREAD1`, responsável por ler e processar os movimentos e ações do mouse em um jogo. 
 
 1. **Início**
@@ -296,7 +307,10 @@ Este fluxograma descreve o fluxo de execução da `THREAD1`, responsável por le
 
 
 ## Loop das Fases
-
+<div align="center" widht="300">
+<img src="https://github.com/user-attachments/assets/e307f5e2-a142-45d2-a3b6-c1a14aa72efd" width="600">
+</div>
+</br>
 O fluxograma detalha o funcionamento do loop das fases no jogo. Aqui está uma descrição passo a passo de cada seção:
 
 1. **Início:**
