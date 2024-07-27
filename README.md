@@ -1,6 +1,8 @@
 <div align="center">
-<h1>Catch The Cheese</h1>
+<img src="https://github.com/user-attachments/assets/02b0f187-bfd3-4b5b-8d93-a56927205575" width="100%">
 </div>
+</br>
+
 
 ```py
 1. Clone esse repositório para sua máquina [git clone URL]
