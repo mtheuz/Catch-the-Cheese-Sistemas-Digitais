@@ -2,7 +2,7 @@
 <h1>Conversas entre Hardware e Software</h1>
 </div>
 
-# Como rodar o projeto
+# Catch The Cheese
 
 ```py
 1. Clone esse repositório para sua máquina [git clone URL]
@@ -157,15 +157,14 @@ Foi criada uma nova estrutura para armazenar as informações dos novos sprites 
 
 ### draw_sprites.h
 
-| Nome da Função        | Parâmetros | Descrição                              |
-| --------------------- | ---------- | -------------------------------------- |
-| `draw_player`         | Nenhum     | Desenha o sprite do jogador.           |
-| `draw_enemy`          | Nenhum     | Desenha o sprite do inimigo.           |
-| `draw_bomb`           | Nenhum     | Desenha o sprite da bomba.             |
-| `draw_bomb_animation` | Nenhum     | Desenha a animação da bomba.           |
-| `draw_ghost`          | Nenhum     | Desenha o sprite do fantasma.          |
-| `draw_coin`           | Nenhum     | Desenha o sprite da moeda.             |
-| `draw_player_shild`   | Nenhum     | Desenha o sprite do escudo do jogador. |
+| Nome da Função      | Parâmetros | Descrição                              |
+| ------------------- | ---------- | -------------------------------------- |
+| `draw_player`       | Nenhum     | Desenha o sprite do jogador.           |
+| `draw_enemy`        | Nenhum     | Desenha o sprite do inimigo.           |
+| `draw_bomb`         | Nenhum     | Desenha o sprite da ratoeira.          |
+| `draw_ghost`        | Nenhum     | Desenha o sprite do fantasma.          |
+| `draw_coin`         | Nenhum     | Desenha o sprite do queijo.            |
+| `draw_player_shild` | Nenhum     | Desenha o sprite do escudo do jogador. |
 
 ### draw_screens.h
 
@@ -181,17 +180,20 @@ Foi criada uma nova estrutura para armazenar as informações dos novos sprites 
 | `draw_bg_cenario`        | Nenhum                     | Desenha o cenário de fundo.                    |
 
 ## botoes_control.h e display_control.h
+
 Duas novas bibliotecas foram criadas para se comunicar com os componentes da placa, botoes_control.h e display_control.h, uma fica encarregada do funcionamento dos botões e a outra do display de 7-segmentos
 
 ### botoes_control.h
-| Nome da Função        | Tipo/Parâmetros | Descrição                      |
-| --------------------- | --------------- | ------------------------------ |
-| `open_botoes_device`  | Nenhum          | Abre o dispositivo de botões.  |
-| `read_botoes`         | Nenhum          | Lê o estado dos botões.        |
-| `close_botoes_device` | Nenhum          | Fecha o dispositivo de botões. |
+
+| Nome da Função        | Parâmetros | Descrição                      |
+| --------------------- | ---------- | ------------------------------ |
+| `open_botoes_device`  | Nenhum     | Abre o dispositivo de botões.  |
+| `read_botoes`         | Nenhum     | Lê o estado dos botões.        |
+| `close_botoes_device` | Nenhum     | Fecha o dispositivo de botões. |
 
 ### display_control.h
-| Nome da Função         | Tipo/Parâmetros                 | Descrição                                                        |
+
+| Nome da Função         | Parâmetros                      | Descrição                                                        |
 | ---------------------- | ------------------------------- | ---------------------------------------------------------------- |
 | `open_display_device`  | Nenhum                          | Abre o dispositivo de display e mapeia a memória.                |
 | `write_number_display` | `int display_digit, int number` | Escreve um número em um dos displays HEX.                        |
@@ -202,9 +204,11 @@ Duas novas bibliotecas foram criadas para se comunicar com os componentes da pla
 # Desenvolvimento do Jogo
 
 ### Movimento do mouse
+
 A função `mouse_movement()` tem a tarefa de processar eventos do mouse para atualizar a posição do cursor na tela. Inicialmente, a função lê os dados do mouse, que incluem informações sobre o estado dos botões e o deslocamento do cursor. Em seguida, ela aplica uma forma básica de aceleração ao atualizar as coordenadas do cursor, reduzindo o impacto do movimento ao dividir o deslocamento por 2. Isso ajuda a suavizar o movimento do cursor e a evitar movimentos excessivamente rápidos. Além disso, a função garante que o cursor permaneça dentro de uma área específica da tela, ajustando suas coordenadas para não ultrapassar os limites estabelecidos. Embora essa aceleração seja simples, ela pode ser ajustada para comportamentos mais avançados conforme necessário.
 
 ### Verificação de colisão
+
 Para verificar se dois sprites colidem em um jogo, criamos a função `collision`, que recebe as coordenadas X e Y de dois sprites e determina se eles estão se sobrepondo. A função calcula as bordas direita e inferior de ambos os sprites, assumindo que cada sprite tem um tamanho fixo de 20 unidades em largura e altura. Em seguida, ela compara as coordenadas dos sprites para verificar se há alguma interseção entre suas áreas. Se as coordenadas de um sprite estiverem fora dos limites do outro, a função conclui que não há colisão, definindo a propriedade de colisão dos sprites como 0 e retornando 0. Caso contrário, se houver sobreposição, a propriedade de colisão é ajustada para 1 para ambos os sprites e a função retorna 1, indicando que houve uma colisão.
 
 ### Aleatoriedade dos objetos
@@ -212,5 +216,175 @@ Para verificar se dois sprites colidem em um jogo, criamos a função `collision
 Para tornar o jogo mais interessante e dinâmico, os inimigos (gatos e ratoeiras) e o queijo são posicionados aleatoriamente na tela a cada nova geração. Para realizar essa aleatoriedade, a tela de 640x480 pixels é dividida em uma grade de 20 partes, resultando em células de 32x24 pixels cada. Com essa divisão, obtemos um total de 768 posições válidas onde os objetos podem ser colocados. Dessa forma, a posição de cada objeto é escolhida aleatoriamente dentro dessas células, garantindo que o layout do jogo seja diferente a cada vez que ele é iniciado, o que aumenta a imprevisibilidade e o desafio para o jogador.
 
 ### Utilização de Threads
-Para evitar conflitos entre a utilização do mouse e os botões da placa, o sistema do jogo utiliza duas threads distintas. A primeira thread é responsável por capturar as informações fornecidas pelo mouse, controlar o sprite do jogador principal e executar as ações correspondentes. Isso permite que o movimento e as interações do jogador sejam processados em tempo real, sem interferir em outras operações do jogo. A segunda thread gerencia o loop principal do jogo e as verificações das ações dos botões da placa. Ela assegura que as entradas dos botões sejam processadas de forma eficiente e que o jogo mantenha seu fluxo contínuo. 
 
+Para evitar conflitos entre a utilização do mouse e os botões da placa, o sistema do jogo utiliza duas threads distintas. A primeira thread é responsável por capturar as informações fornecidas pelo mouse, controlar o sprite do jogador principal e executar as ações correspondentes. Isso permite que o movimento e as interações do jogador sejam processados em tempo real, sem interferir em outras operações do jogo. A segunda thread gerencia o loop principal do jogo e as verificações das ações dos botões da placa. Ela assegura que as entradas dos botões sejam processadas de forma eficiente e que o jogo mantenha seu fluxo contínuo.
+
+# O jogo "Catch the cheese"
+
+No jogo "Catch The Cheese", o jogador controla um rato cujo objetivo é coletar todos os queijos de um local enquanto foge dos gatos. Durante o jogo, ratoeiras surgem para dificultar o objetivo principal. O jogador vence o jogo ao coletar todos os queijos e perde caso os gatos ou as ratoeiras o peguem.
+
+## Objetivo
+
+O jogador assume o papel de um rato esperto, cuja missão é coletar queijos espalhados pelo cenário. A cada 5 queijos coletados, o jogador avança para uma nova fase, devendo coletar mais 5 queijos. A jornada se completa ao atingir um total de 25 queijos.
+
+## Desafios
+
+Gatos aparecerão para complicar a vida do nosso pequeno herói. Eles se movimentam tanto na vertical quanto na horizontal e, se colidirem com o rato, o jogador perderá uma das suas 3 vidas. Além disso, ratoeiras estarão espalhadas pelo caminho, representando mais uma ameaça.
+
+## Poderes e Habilidades
+
+- **Fantasma Temporário:** Ao ser atingido por um gato ou ratoeira, o rato se transforma em um fantasma por um curto período, ficando imune a danos.
+- **Escudo Protetor:** Uma vez por jogo, o jogador pode ativar o escudo clicando com o botão esquerdo do mouse. O escudo protege o rato de perder uma vida na próxima vez que for atingido.
+
+## Fim de Jogo
+
+Se o jogador perder todas as 3 vidas, ao próximo impacto o jogo termina com um "Game Over" e ele terá que reiniciar para jogar novamente.
+
+## Progresso
+
+
+- Fase 1: Coletar 5 queijos / 2 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/cba160f2-24b3-46a9-9e82-d7fe03f29a87" width="300">
+</div>
+</br>
+
+- Fase 2: Coletar 5 queijos / 4 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/b143107f-5392-4f85-a2b7-1288aa5b84f7" width="300">
+</div>
+</br>
+
+- Fase 3: Coletar 5 queijos / 6 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/44e88333-2b04-48f3-ab5c-b4054e9da974" width="300">
+</div>
+</br>
+
+- Fase 4: Coletar 5 queijos / 6 inimigos / 2 ratoeiras
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/ae4f23a3-5407-4e6d-b91b-858f997f595b" width="300">
+</div>
+</br>
+
+- Fase 5: Coletar 5 queijos /  6 inimgos / 4 ratoeiras
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/236a4d87-8f84-466e-a4ab-f0e1c779e487" width="300">
+</div>
+</br>
+
+- **Total: 25 queijos**
+
+Foram criadas 5 fases no total, sendo as primeiras fases mais fáceis e as últimas mais difíceis. Das fases 1 a 3, mais gatos são adicionados enquanto nas fases 4 e 5 as ratoeiras começam a aparecer. Cada vez que o jogador passa de fase, a velocidade com que os gatos se movem é aumentada.
+
+A cada nova fase, os desafios aumentam, tornando a jornada mais emocionante e desafiadora. Prepare-se para uma aventura cheia de surpresas e perigos!
+
+# Fluxo do jogo
+
+O fluxograma ilustra a sequência de passos para o funcionamento do jogo, começando com a inicialização da variável `game_state` e a impressão da tela inicial. Em seguida, o sistema lê o botão `KEY0`. Se `KEY0` for pressionado (`KEY0 == 1`), duas threads são iniciadas: `THREAD1` e `THREAD2`. `THREAD1` é responsável pelo movimento e ações do mouse, enquanto `THREAD2` cuida do loop principal do jogo e da ação dos botões. Ambas as threads verificam constantemente o estado do jogo (`game_state`), e se o `game_state` for maior ou igual a 6, o jogo termina e o sistema segue para a saída. Se `KEY0` não for pressionado, o sistema continua verificando até que seja detectada a entrada do usuário.
+
+## Funcionamento dos botões 
+
+O fluxograma detalha o funcionamento do loop principal do jogo (`THREAD2`) e as ações dos botões. Aqui está uma descrição passo a passo de cada seção:
+
+1. **Início:**
+   - O processo começa lendo os inputs dos botões `KEY0`, `KEY1`, `KEY2` e `KEY3`.
+   - A variável `game_state` é modificada com base nos botões acionados.
+
+2. **Jogando:**
+   - **Condição:** `game_state == 0`
+   - Se a condição `fase_comp == 0` ou `KEY_PRESS == 1` for verdadeira, o jogo entra no **loop das fases**.
+
+3. **Fase Completa:**
+   - **Condição:** `game_state == 1`
+   - Gera a próxima fase.
+
+4. **Reiniciando:**
+   - **Condição:** `game_state == 3`
+   - Reinicia o jogo.
+
+5. **Perdeu:**
+   - **Condição:** `game_state == 4`
+   - Desenha a tela "Game Over".
+
+6. **Ganhou:**
+   - **Condição:** `game_state == 5`
+   - Desenha a tela "You Win".
+
+7. **Finalizou:**
+   - **Condição:** `game_state == 6`
+   - Finaliza o jogo e segue para a saída.
+
+Cada estado do jogo é verificado sequencialmente, e as ações são tomadas com base no valor atual de `game_state`, permitindo uma transição fluida entre diferentes fases e condições de jogo.
+
+
+## Movimento e Ações do Mouse
+Este fluxograma descreve o fluxo de execução da `THREAD1`, responsável por ler e processar os movimentos e ações do mouse em um jogo. 
+
+1. **Início**
+   - O processo começa no estado inicial.
+
+2. **Leitura dos Inputs do Mouse**
+   - A thread lê os inputs do mouse, que incluem:
+     - `POS_X`: Posição X do mouse.
+     - `POS_Y`: Posição Y do mouse.
+     - `LEFT_CLICK`: Estado do clique esquerdo do mouse.
+
+3. **Verificação do Estado do Jogo**
+   - A thread verifica se o `game_state` é igual a 6:
+     - Se verdadeiro, o fluxo vai para a saída.
+     - Se falso, a thread verifica se o `game_state` é igual a 1.
+
+4. **Incremento da Posição do Sprite**
+   - Se o `game_state` é igual a 1, a thread incrementa a posição do sprite do jogador com base nos valores de `POS_X` e `POS_Y`.
+
+5. **Verificação do Clique Esquerdo**
+   - A thread verifica se o `LEFT_CLICK` é igual a 1:
+     - Se verdadeiro, a habilidade do jogador é ativada (`action = 1`).
+     - Se falso, o fluxo retorna à leitura dos inputs do mouse.
+
+6. **Saída**
+   - Se o `game_state` é igual a 6, o fluxo vai para a saída e a thread encerra seu processamento.
+
+
+## Loop das Fases
+
+O fluxograma detalha o funcionamento do loop das fases no jogo. Aqui está uma descrição passo a passo de cada seção:
+
+1. **Início:**
+   - Desenha o background.
+
+2. **Geração de Inimigos:**
+   - Gera inimigos com base na fase atual.
+
+3. **Leitura dos Inputs dos Botões:**
+   - Lê os inputs dos botões `KEY0`, `KEY1` e `KEY3`.
+   - Se `KEY0 == 1`, `KEY1 == 1` ou `KEY3 == 1`, sinaliza que um botão foi acionado (`KEY_PRESS == 1`), e muda o estado do jogo para `game_state == 4` (saída).
+
+4. **Movimento dos Inimigos:**
+   - Move os inimigos.
+
+5. **Verificação de Colisões:**
+   - Verifica se há colisões.
+
+6. **Geração de Novo Objetivo (se necessário):**
+   - Gera um novo objetivo se preciso.
+
+7. **Verificação de Vidas:**
+   - Se `vidas < 0`, muda o estado do jogo para `game_state == 4` (saída).
+
+8. **Verificação de Pontuação:**
+   - Se `score % 5 == 0`, incrementa a variável da fase (`fase + 1`) e `game_state = 2` (saída).
+
+9. **Atualização do Estado do Jogo:**
+   - Se `score == 25`, atualiza o estado do jogo para `GANHOU` (`game_state = 5`).
+
+Cada um desses passos é executado em sequência para garantir a mecânica de avanço de fases, verificação de condições de vitória ou derrota, e transições adequadas entre os diferentes estados do jogo.
+
+# Conclusão
+Desenvolver "Catch the Cheese" foi uma jornada rica em aprendizado e desafios, envolvendo diversas disciplinas da computação, como programação em C, uso de hardware específico e design de jogos. A experiência proporcionou uma compreensão profunda da integração entre software e hardware, além de aprimorar habilidades em resolução de problemas e trabalho em equipe.
