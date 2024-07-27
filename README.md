@@ -17,15 +17,13 @@
 
 ```
 
-# 📖 1. Introdução
-
-### Introdução
+# Introdução
 
 Os jogos digitais começaram como simples passatempos e se transformaram em verdadeiras obras de arte interativas, influenciando a cultura atual e mudando a forma como nos divertimos. Desde os dias dos jogos de arcade até os títulos modernos com gráficos incríveis e histórias envolventes, a indústria de games nunca parou de surpreender. Criar um jogo digital é uma jornada emocionante e complexa que envolve uma mistura de programação, design, arte e música.
 
 Neste trabalho, vamos mergulhar no desenvolvimento de Catch the Cheese, explorando cada fase do processo, desde a ideia inicial até o produto final. Vamos ver como nossa equipe superou desafios e usou as tecnologias para dar vida ao jogo. Ao nos aprofundarmos na criação de Catch the Cheese, queremos mostrar todo o esforço e a criatividade envolvidos em transformar uma ideia em uma experiência de jogo inesquecível.
 
-# 🎯 2. Requisitos do sistema
+# Requisitos do sistema
 
 - [x] O código deve ser escrito em linguagem C;
 - [x] O sistema só poderá utilizar os componentes disponíveis na placa;
@@ -33,7 +31,7 @@ Neste trabalho, vamos mergulhar no desenvolvimento de Catch the Cheese, exploran
 - [x] As ações do ator do jogo (pulo, tiro, etc.) devem ser comandadas pelos botões do mouse;
 - [x] A variação da velocidade no movimento do mouse deve ser refletida na ação do ator do jogo. Por exemplo, no jogo breakout a barra se move com velocidade maior se o movimento do mouse for brusco;
 
-# 📝 3. Descrição das ferramentas utilizadas
+# Descrição das ferramentas utilizadas
 
 - ### Nano:
   O GNU Nano é um editor de texto minimalista, integrado de forma nativa em sistemas operacionais Linux e operado diretamente no terminal do sistema. Este software foi um dos utilitários de edição de texto empregados durante a codificação do projeto.
