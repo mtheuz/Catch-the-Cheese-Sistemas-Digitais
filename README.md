@@ -199,6 +199,8 @@ Duas novas bibliotecas foram criadas para se comunicar com os componentes da pla
 | `write_lifes`          | `int vidas`                     | Escreve o número de vidas restantes no display (2 dígitos).      |
 | `close_display_device` | Nenhum                          | Fecha o dispositivo de display e desfaz o mapeamento da memória. |
 
+
+
 # Desenvolvimento do Jogo
 
 ### Movimento do mouse
@@ -217,70 +219,6 @@ Para tornar o jogo mais interessante e dinâmico, os inimigos (gatos e ratoeiras
 
 Para evitar conflitos entre a utilização do mouse e os botões da placa, o sistema do jogo utiliza duas threads distintas. A primeira thread é responsável por capturar as informações fornecidas pelo mouse, controlar o sprite do jogador principal e executar as ações correspondentes. Isso permite que o movimento e as interações do jogador sejam processados em tempo real, sem interferir em outras operações do jogo. A segunda thread gerencia o loop principal do jogo e as verificações das ações dos botões da placa. Ela assegura que as entradas dos botões sejam processadas de forma eficiente e que o jogo mantenha seu fluxo contínuo.
 
-# O jogo "Catch the cheese"
-
-No jogo "Catch The Cheese", o jogador controla um rato cujo objetivo é coletar todos os queijos de um local enquanto foge dos gatos. Durante o jogo, ratoeiras surgem para dificultar o objetivo principal. O jogador vence o jogo ao coletar todos os queijos e perde caso os gatos ou as ratoeiras o peguem.
-
-## Objetivo
-
-O jogador assume o papel de um rato esperto, cuja missão é coletar queijos espalhados pelo cenário. A cada 5 queijos coletados, o jogador avança para uma nova fase, devendo coletar mais 5 queijos. A jornada se completa ao atingir um total de 25 queijos.
-
-## Desafios
-
-Gatos aparecerão para complicar a vida do nosso pequeno herói. Eles se movimentam tanto na vertical quanto na horizontal e, se colidirem com o rato, o jogador perderá uma das suas 3 vidas. Além disso, ratoeiras estarão espalhadas pelo caminho, representando mais uma ameaça.
-
-## Poderes e Habilidades
-
-- **Fantasma Temporário:** Ao ser atingido por um gato ou ratoeira, o rato se transforma em um fantasma por um curto período, ficando imune a danos.
-- **Escudo Protetor:** Uma vez por jogo, o jogador pode ativar o escudo clicando com o botão esquerdo do mouse. O escudo protege o rato de perder uma vida na próxima vez que for atingido.
-
-## Fim de Jogo
-
-Se o jogador perder todas as 3 vidas, ao próximo impacto o jogo termina com um "Game Over" e ele terá que reiniciar para jogar novamente.
-
-## Progresso
-
-
-- Fase 1: Coletar 5 queijos / 2 inimigos
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/cba160f2-24b3-46a9-9e82-d7fe03f29a87" width="300">
-</div>
-</br>
-
-- Fase 2: Coletar 5 queijos / 4 inimigos
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/b143107f-5392-4f85-a2b7-1288aa5b84f7" width="300">
-</div>
-</br>
-
-- Fase 3: Coletar 5 queijos / 6 inimigos
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/44e88333-2b04-48f3-ab5c-b4054e9da974" width="300">
-</div>
-</br>
-
-- Fase 4: Coletar 5 queijos / 6 inimigos / 2 ratoeiras
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/ae4f23a3-5407-4e6d-b91b-858f997f595b" width="300">
-</div>
-</br>
-
-- Fase 5: Coletar 5 queijos /  6 inimgos / 4 ratoeiras
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/236a4d87-8f84-466e-a4ab-f0e1c779e487" width="300">
-</div>
-</br>
-
-- **Total: 25 queijos**
-
-Foram criadas 5 fases no total, sendo as primeiras fases mais fáceis e as últimas mais difíceis. Das fases 1 a 3, mais gatos são adicionados enquanto nas fases 4 e 5 as ratoeiras começam a aparecer. Cada vez que o jogador passa de fase, a velocidade com que os gatos se movem é aumentada.
-
-A cada nova fase, os desafios aumentam, tornando a jornada mais emocionante e desafiadora. Prepare-se para uma aventura cheia de surpresas e perigos!
 
 # Fluxo do jogo
 
@@ -383,6 +321,72 @@ O fluxograma detalha o funcionamento do loop das fases no jogo. Aqui está uma d
    - Se `score == 25`, atualiza o estado do jogo para `GANHOU` (`game_state = 5`).
 
 Cada um desses passos é executado em sequência para garantir a mecânica de avanço de fases, verificação de condições de vitória ou derrota, e transições adequadas entre os diferentes estados do jogo.
+
+# O jogo "Catch the cheese"
+
+No jogo "Catch The Cheese", o jogador controla um rato cujo objetivo é coletar todos os queijos de um local enquanto foge dos gatos. Durante o jogo, ratoeiras surgem para dificultar o objetivo principal. O jogador vence o jogo ao coletar todos os queijos e perde caso os gatos ou as ratoeiras o peguem.
+
+## Objetivo
+
+O jogador assume o papel de um rato esperto, cuja missão é coletar queijos espalhados pelo cenário. A cada 5 queijos coletados, o jogador avança para uma nova fase, devendo coletar mais 5 queijos. A jornada se completa ao atingir um total de 25 queijos.
+
+## Desafios
+
+Gatos aparecerão para complicar a vida do nosso pequeno herói. Eles se movimentam tanto na vertical quanto na horizontal e, se colidirem com o rato, o jogador perderá uma das suas 3 vidas. Além disso, ratoeiras estarão espalhadas pelo caminho, representando mais uma ameaça.
+
+## Poderes e Habilidades
+
+- **Fantasma Temporário:** Ao ser atingido por um gato ou ratoeira, o rato se transforma em um fantasma por um curto período, ficando imune a danos.
+- **Escudo Protetor:** Uma vez por jogo, o jogador pode ativar o escudo clicando com o botão esquerdo do mouse. O escudo protege o rato de perder uma vida na próxima vez que for atingido.
+
+## Fim de Jogo
+
+Se o jogador perder todas as 3 vidas, ao próximo impacto o jogo termina com um "Game Over" e ele terá que reiniciar para jogar novamente.
+
+## Progresso
+
+
+- Fase 1: Coletar 5 queijos / 2 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/cba160f2-24b3-46a9-9e82-d7fe03f29a87" width="300">
+</div>
+</br>
+
+- Fase 2: Coletar 5 queijos / 4 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/b143107f-5392-4f85-a2b7-1288aa5b84f7" width="300">
+</div>
+</br>
+
+- Fase 3: Coletar 5 queijos / 6 inimigos
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/44e88333-2b04-48f3-ab5c-b4054e9da974" width="300">
+</div>
+</br>
+
+- Fase 4: Coletar 5 queijos / 6 inimigos / 2 ratoeiras
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/ae4f23a3-5407-4e6d-b91b-858f997f595b" width="300">
+</div>
+</br>
+
+- Fase 5: Coletar 5 queijos /  6 inimgos / 4 ratoeiras
+
+<div align="center">
+<img src="https://github.com/user-attachments/assets/236a4d87-8f84-466e-a4ab-f0e1c779e487" width="300">
+</div>
+</br>
+
+- **Total: 25 queijos**
+
+Foram criadas 5 fases no total, sendo as primeiras fases mais fáceis e as últimas mais difíceis. Das fases 1 a 3, mais gatos são adicionados enquanto nas fases 4 e 5 as ratoeiras começam a aparecer. Cada vez que o jogador passa de fase, a velocidade com que os gatos se movem é aumentada.
+
+A cada nova fase, os desafios aumentam, tornando a jornada mais emocionante e desafiadora. Prepare-se para uma aventura cheia de surpresas e perigos!
+
 
 # Conclusão
 Desenvolver "Catch the Cheese" foi uma jornada rica em aprendizado e desafios, envolvendo diversas disciplinas da computação, como programação em C, uso de hardware específico e design de jogos. A experiência proporcionou uma compreensão profunda da integração entre software e hardware, além de aprimorar habilidades em resolução de problemas e trabalho em equipe.
