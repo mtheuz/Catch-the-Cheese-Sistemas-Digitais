@@ -126,14 +126,14 @@ A placa DE1-SoC possui um conector D-SUB de 15 pinos para saída VGA. Os sinais 
 
 # Bibioltecas
 
-## gpu_lib.c
+## gpu_lib.h
 
-A biblioteca gpu_lib.c fornece uma interface para interagir com um driver de GPU, permitindo a manipulação de sprites, polígonos e cores de fundo através de funções específicas. Abaixo está uma explicação detalhada de cada parte da biblioteca:
+A biblioteca gpu_lib.h fornece uma interface para interagir com um driver de GPU, permitindo a manipulação de sprites, polígonos e cores de fundo através de funções específicas. Abaixo está uma explicação detalhada de cada parte da biblioteca:
 
-| Nome da Função            | Parâmetros                                                                                                                                                   | Funcionalidade                                                                                                              |
+| Nome da Função            | Parâmetros                                                                                                                                                   | Descrição                                                                                                                   |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `open_gpu_device`         | Nenhum                                                                                                                                                         | Abre o arquivo do driver da GPU. Retorna 1 se bem-sucedido, 0 caso contrário.                                               |
-| `close_gpu_devide`        | Nenhum                                                                                                                                                         | Fecha o arquivo do driver da GPU.                                                                                           |
+| `open_gpu_device`         | Nenhum                                                                                                                                                       | Abre o arquivo do driver da GPU. Retorna 1 se bem-sucedido, 0 caso contrário.                                               |
+| `close_gpu_devide`        | Nenhum                                                                                                                                                       | Fecha o arquivo do driver da GPU.                                                                                           |
 | `set_background_color`    | `uint8_t R`, `uint8_t G`, `uint8_t B`                                                                                                                        | Configura a cor de fundo com valores RGB. Retorna 0 se falhar, 1 se bem-sucedido.                                           |
 | `set_sprite`              | `uint8_t reg`, `uint16_t x`, `uint16_t y`, `uint8_t offset`, `uint8_t sp`                                                                                    | Define um sprite na tela com as coordenadas, deslocamento e ativação especificados. Retorna 0 se falhar, 1 se bem-sucedido. |
 | `set_poligono`            | `uint16_t address`, `uint16_t ref_x`, `uint16_t ref_y`, `uint8_t size`, `uint8_t r`, `uint8_t g`, `uint8_t b`, `uint8_t shape`                               | Define um polígono na tela com as características especificadas. Retorna 0 se falhar, 1 se bem-sucedido.                    |
@@ -141,33 +141,33 @@ A biblioteca gpu_lib.c fornece uma interface para interagir com um driver de GPU
 | `set_sprite_pixel_color`  | `uint16_t address`, `uint8_t R`, `uint8_t G`, `uint8_t B`                                                                                                    | Muda a cor RGB de um pixel específico em um sprite. Retorna 1 se bem-sucedido, 0 caso contrário.                            |
 | `change_coordinate`       | `Sprite *sp`, `uint16_t new_x`, `uint16_t new_y`, `uint8_t mirror`                                                                                           | Atualiza as coordenadas de um sprite e redefine sua posição na tela.                                                        |
 | `collision`               | `Sprite *sp1`, `Sprite *sp2`                                                                                                                                 | Verifica se há colisão entre dois sprites. Retorna 1 se há colisão, 0 caso contrário.                                       |
-| `clear_background_blocks` | Nenhum                                                                                                                                                         | Define o valor RGB "510" para todos os blocos de fundo, restaurando a cor padrão.                                           |
+| `clear_background_blocks` | Nenhum                                                                                                                                                       | Define o valor RGB "510" para todos os blocos de fundo, restaurando a cor padrão.                                           |
 | `fill_background_blocks`  | `uint8_t line`, `uint8_t R`, `uint8_t G`, `uint8_t B`                                                                                                        | Preenche todos os blocos de fundo a partir de uma linha especificada com a cor dada.                                        |
 | `create_fixed_sprite`     | `uint8_t array_position`, `uint8_t reg`, `uint16_t x`, `uint16_t y`, `uint8_t offset`, `uint8_t sp`                                                          | Cria um sprite fixo na posição especificada e retorna 1 se bem-sucedido, 0 caso contrário.                                  |
 | `create_sprite`           | `uint8_t array_position`, `uint8_t reg`, `uint16_t x`, `uint16_t y`, `uint8_t offset`, `uint8_t step_x`, `uint8_t step_y`, `uint8_t direction`, `uint8_t sp` | Cria um sprite móvel na posição especificada e retorna 1 se bem-sucedido, 0 caso contrário.                                 |
-| `clear_poligonos`         | Nenhum                                                                                                                                                         | Desativa todos os polígonos configurando seu tamanho para 0.                                                                |
-| `clear_sprites`           | Nenhum                                                                                                                                                         | Desativa todos os sprites nos registradores de 1 a 31.                                                                      |
+| `clear_poligonos`         | Nenhum                                                                                                                                                       | Desativa todos os polígonos configurando seu tamanho para 0.                                                                |
+| `clear_sprites`           | Nenhum                                                                                                                                                       | Desativa todos os sprites nos registradores de 1 a 31.                                                                      |
 | `static_movement`         | `Sprite *sp`, `uint8_t mirror`                                                                                                                               | Atualiza as coordenadas de um sprite com base na direção e deslocamento, considerando a condição de espelhamento.           |
-| `clear_all`               | Nenhum                                                                                                                                                         | Limpa todos os blocos de fundo, polígonos e sprites.                                                                        |
-| `reset_sprites`           | Nenhum                                                                                                                                                         | Reativa todos os sprites no array `sprites_array` que estão ativados.                                                       |
+| `clear_all`               | Nenhum                                                                                                                                                       | Limpa todos os blocos de fundo, polígonos e sprites.                                                                        |
+| `reset_sprites`           | Nenhum                                                                                                                                                       | Reativa todos os sprites no array `sprites_array` que estão ativados.                                                       |
 
-## draw_sprites.c e draw_screens.c
+## draw_sprites.h e draw_screens.h
 
 Foi criada uma nova estrutura para armazenar as informações dos novos sprites e telas a serem desenhadas no monitor, utilizando os arquivos `draw_sprites.h` e `draw_screens.h`.
 
-### draw_sprites.c
+### draw_sprites.h
 
-| Nome da Função        | Descrição                              | Parâmetros |
-| --------------------- | -------------------------------------- | ---------- |
-| `draw_player`         | Desenha o sprite do jogador.           | Nenhum     |
-| `draw_enemy`          | Desenha o sprite do inimigo.           | Nenhum     |
-| `draw_bomb`           | Desenha o sprite da bomba.             | Nenhum     |
-| `draw_bomb_animation` | Desenha a animação da bomba.           | Nenhum     |
-| `draw_ghost`          | Desenha o sprite do fantasma.          | Nenhum     |
-| `draw_coin`           | Desenha o sprite da moeda.             | Nenhum     |
-| `draw_player_shild`   | Desenha o sprite do escudo do jogador. | Nenhum     |
+| Nome da Função        | Parâmetros | Descrição                              |
+| --------------------- | ---------- | -------------------------------------- |
+| `draw_player`         | Nenhum     | Desenha o sprite do jogador.           |
+| `draw_enemy`          | Nenhum     | Desenha o sprite do inimigo.           |
+| `draw_bomb`           | Nenhum     | Desenha o sprite da bomba.             |
+| `draw_bomb_animation` | Nenhum     | Desenha a animação da bomba.           |
+| `draw_ghost`          | Nenhum     | Desenha o sprite do fantasma.          |
+| `draw_coin`           | Nenhum     | Desenha o sprite da moeda.             |
+| `draw_player_shild`   | Nenhum     | Desenha o sprite do escudo do jogador. |
 
-### screens.c
+### draw_screens.h
 
 | Nome da Função           | Parâmetros                 | Descrição                                      |
 | ------------------------ | -------------------------- | ---------------------------------------------- |
@@ -179,3 +179,38 @@ Foi criada uma nova estrutura para armazenar as informações dos novos sprites 
 | `draw_start_game_screen` | Nenhum                     | Limpa a tela e desenha a tela inicial do jogo. |
 | `draw_end_game_screen`   | Nenhum                     | Limpa a tela e desenha a tela de fim de jogo.  |
 | `draw_bg_cenario`        | Nenhum                     | Desenha o cenário de fundo.                    |
+
+## botoes_control.h e display_control.h
+Duas novas bibliotecas foram criadas para se comunicar com os componentes da placa, botoes_control.h e display_control.h, uma fica encarregada do funcionamento dos botões e a outra do display de 7-segmentos
+
+### botoes_control.h
+| Nome da Função        | Tipo/Parâmetros | Descrição                      |
+| --------------------- | --------------- | ------------------------------ |
+| `open_botoes_device`  | Nenhum          | Abre o dispositivo de botões.  |
+| `read_botoes`         | Nenhum          | Lê o estado dos botões.        |
+| `close_botoes_device` | Nenhum          | Fecha o dispositivo de botões. |
+
+### display_control.h
+| Nome da Função         | Tipo/Parâmetros                 | Descrição                                                        |
+| ---------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| `open_display_device`  | Nenhum                          | Abre o dispositivo de display e mapeia a memória.                |
+| `write_number_display` | `int display_digit, int number` | Escreve um número em um dos displays HEX.                        |
+| `write_score`          | `int score`                     | Escreve a pontuação no display (2 dígitos).                      |
+| `write_lifes`          | `int vidas`                     | Escreve o número de vidas restantes no display (2 dígitos).      |
+| `close_display_device` | Nenhum                          | Fecha o dispositivo de display e desfaz o mapeamento da memória. |
+
+# Desenvolvimento do Jogo
+
+### Movimento do mouse
+A função `mouse_movement()` tem a tarefa de processar eventos do mouse para atualizar a posição do cursor na tela. Inicialmente, a função lê os dados do mouse, que incluem informações sobre o estado dos botões e o deslocamento do cursor. Em seguida, ela aplica uma forma básica de aceleração ao atualizar as coordenadas do cursor, reduzindo o impacto do movimento ao dividir o deslocamento por 2. Isso ajuda a suavizar o movimento do cursor e a evitar movimentos excessivamente rápidos. Além disso, a função garante que o cursor permaneça dentro de uma área específica da tela, ajustando suas coordenadas para não ultrapassar os limites estabelecidos. Embora essa aceleração seja simples, ela pode ser ajustada para comportamentos mais avançados conforme necessário.
+
+### Verificação de colisão
+Para verificar se dois sprites colidem em um jogo, criamos a função `collision`, que recebe as coordenadas X e Y de dois sprites e determina se eles estão se sobrepondo. A função calcula as bordas direita e inferior de ambos os sprites, assumindo que cada sprite tem um tamanho fixo de 20 unidades em largura e altura. Em seguida, ela compara as coordenadas dos sprites para verificar se há alguma interseção entre suas áreas. Se as coordenadas de um sprite estiverem fora dos limites do outro, a função conclui que não há colisão, definindo a propriedade de colisão dos sprites como 0 e retornando 0. Caso contrário, se houver sobreposição, a propriedade de colisão é ajustada para 1 para ambos os sprites e a função retorna 1, indicando que houve uma colisão.
+
+### Aleatoriedade dos objetos
+
+Para tornar o jogo mais interessante e dinâmico, os inimigos (gatos e ratoeiras) e o queijo são posicionados aleatoriamente na tela a cada nova geração. Para realizar essa aleatoriedade, a tela de 640x480 pixels é dividida em uma grade de 20 partes, resultando em células de 32x24 pixels cada. Com essa divisão, obtemos um total de 768 posições válidas onde os objetos podem ser colocados. Dessa forma, a posição de cada objeto é escolhida aleatoriamente dentro dessas células, garantindo que o layout do jogo seja diferente a cada vez que ele é iniciado, o que aumenta a imprevisibilidade e o desafio para o jogador.
+
+### Utilização de Threads
+Para evitar conflitos entre a utilização do mouse e os botões da placa, o sistema do jogo utiliza duas threads distintas. A primeira thread é responsável por capturar as informações fornecidas pelo mouse, controlar o sprite do jogador principal e executar as ações correspondentes. Isso permite que o movimento e as interações do jogador sejam processados em tempo real, sem interferir em outras operações do jogo. A segunda thread gerencia o loop principal do jogo e as verificações das ações dos botões da placa. Ela assegura que as entradas dos botões sejam processadas de forma eficiente e que o jogo mantenha seu fluxo contínuo. 
+
