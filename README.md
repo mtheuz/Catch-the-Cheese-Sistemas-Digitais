@@ -29,6 +29,15 @@ Neste trabalho, vamos mergulhar no desenvolvimento de Catch the Cheese, exploran
 - [x] As ações do ator do jogo (pulo, tiro, etc.) devem ser comandadas pelos botões do mouse;
 - [x] A variação da velocidade no movimento do mouse deve ser refletida na ação do ator do jogo. Por exemplo, no jogo breakout a barra se move com velocidade maior se o movimento do mouse for brusco;
 
+# Componentes Utilizados
+1. **Kit de Desenvolvimento DE1-Soc**
+   - Componentes:
+     - 4 botões de pressão
+     - 4 displays de 7 segmentos
+     - Entrada USB
+     - Saída VGA 
+2. **Monitor com Entrada VGA**
+3. **Mouse USB**
 # Descrição das ferramentas utilizadas
 
 - ### Nano:
