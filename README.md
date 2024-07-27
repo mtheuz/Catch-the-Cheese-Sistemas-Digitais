@@ -32,10 +32,10 @@ Neste trabalho, vamos mergulhar no desenvolvimento de Catch the Cheese, exploran
 # Componentes Utilizados
 1. **Kit de Desenvolvimento DE1-Soc**
    - Componentes:
-     - 4 botões de pressão
+     - 4 push-buttons
      - 4 displays de 7 segmentos
      - Entrada USB
-     - Saída VGA 
+     - Entrada VGA 
 2. **Monitor com Entrada VGA**
 3. **Mouse USB**
 # Descrição das ferramentas utilizadas
