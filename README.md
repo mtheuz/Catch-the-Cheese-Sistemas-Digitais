@@ -443,3 +443,9 @@ A cada nova fase, os desafios aumentam, tornando a jornada mais emocionante e de
 
 # Conclusão
 Desenvolver "Catch the Cheese" foi uma jornada rica em aprendizado e desafios, envolvendo diversas disciplinas da computação, como programação em C, uso de hardware específico e design de jogos. A experiência proporcionou uma compreensão profunda da integração entre software e hardware, além de aprimorar habilidades em resolução de problemas e trabalho em equipe.
+
+# Autores
+
+- Matheus Mota Santos 
+- Pedro Henrique Araujo
+- Dermeval Neves de Oliveira Filho
